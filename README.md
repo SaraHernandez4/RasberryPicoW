@@ -75,8 +75,10 @@ oled.show()
 
 Circuito
 
-![](20231005_135808.jpg)
+![](OLED3.jpg)
 
 Corriendo en el OLED
 
-![](20231005_135808.jpg)
+![](OLED1.jpg)
+
+![](OLED2.jpg)
