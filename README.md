@@ -92,56 +92,64 @@ Corriendo en el OLED
 ## Autor: Hernandez Saenz  Sara Jazmín
 ## Fecha de revisión:   18/Oct/2023
 
-import time
-import machine
-import ssd1306
-import utime
+#librerias y módulos
 import network
-from machine import Pin, I2C #configuración de pines para su comunicación
-from ssd1306 import SSD1306_I2C #comunicación con la pantalla OLED
-import framebuf, sys
+import urequests
+import utime
+from machine import Pin, I2C
+import ssd1306
 
-#bloque de código para la conexion del raspberry a internet
-print("¡Conectando a Wi-Fi! ", end="")
-wlan = network.WLAN(network.STA_IF)
-wlan.active(True)
-wlan.connect("Pulga","0505pulga")
-while not wlan.isconnected():
-  print(".", end="")
-  time.sleep(0.1)
-print("¡Conexión con éxito!")
-print(wlan.ifconfig())
+#definición de funciones
 
-#Verificación de dispositivo
-def init_i2c(scl_pin, sda_pin):
-    i2c_dev = I2C(1, scl=Pin(scl_pin), sda=Pin(sda_pin), freq=200000)
-    i2c_addr = [hex(ii) for ii in i2c_dev.scan()]
-    
-    if not i2c_addr:
-        print('Pantalla I2C no encontrada')
-        sys.exit()
-    else:
-        print("I2C Address : {}".format(i2c_addr[0]))
-        print("I2C Configuration: {}".format(i2c_dev))
-        
-    return i2c_dev
+#función para la conexión a Wi-Fi
+def conexion(ssid, contra):
+ #verificación de conexión
+ sta_if = network.WLAN(network.STA_IF)
+ #condición para reconocer la conexión
+ if not sta_if.isconnected():
+     print("¡Espere! Conectando a Wi-Fi ")
+     sta_if.active(True)
+     sta_if.connect(ssid, contra)
+     
+ while not sta_if.isconnected():
+     pass
+     print("¡Conexión con éxito!")
+     print('IP:', sta_if.ifconfig()[0]) #despliegue de la dirección ip asignada
 
-i2c = machine.I2C(0, sda=machine.Pin(8), scl=machine.Pin(9), freq=400000)
-oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+#función para la obtención de la hora actual
+def hr_internet():
+#servicio web que brinda la hora actual
+    url = "http://worldtimeapi.org/api/ip" 
+    response = urequests.get(url)
+    dat = response.json()
+    return dat['datetime'] #devuelve el valor
 
-import ntptime
-ntptime.settime()
+#función de configuración de pines para la conexión y comunicación del oled
+def config_pantalla(): 
+    i2c = I2C(0, sda=Pin(8), scl=Pin(9)) 
+    oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+    return oled
 
-while True:
-    hr = utime.localtime() #hora local
-    #despliegue de hora de internet
-    print("{:02}:{:02}:{:02}".format(hr[3], hr[4], hr[5]))
-    utime.sleep(1)
-    oled.fill(0)
-    oled.text("Hora:", 0, 0)
-    oled.text("{:02d}:{:02d}:{:02d}".format(hr[3], hr[4], hr[5]), 0, 16)
+#función para el despliegue de resultados en pantalla
+def despliegue_oled(oled, hr):
+    oled.fill(0) #propiedades de despliegue
+    oled.text("Hora (PST):", 0, 0) #mensaje
+    oled.text(hr, 0, 16)
     oled.show()
-    time.sleep(1)
+
+#definición de red a la que se hará la conexión
+ssid = "OPPO A53"
+contra = "f082dd9d35a2"
+#llamada a la función y envío de parametros
+conexion(ssid, contra) 
+oled = config_pantalla()
+
+#blucle para imprimir en la pantalla y consola los resultados
+while True:
+    hr = hr_internet()
+    print("Hora actual:", hr)
+    despliegue_oled(oled, hr)
+    utime.sleep(60)
 ##
 ```
 
@@ -156,4 +164,3 @@ Corriendo en el OLED
 ![](Hora1.jpg)
 
 ![](Hora2.jpg)
-
