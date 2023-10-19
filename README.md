@@ -105,7 +105,7 @@ import framebuf, sys
 print("¡Conectando a Wi-Fi! ", end="")
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
-wlan.connect("OPPO A53","f082dd9d35a2")
+wlan.connect("Pulga","0505pulga")
 while not wlan.isconnected():
   print(".", end="")
   time.sleep(0.1)
@@ -153,7 +153,7 @@ Circuito
 
 Corriendo en el OLED
 
-![](OLED1.jpg)
+![](Hora1.jpg)
 
-![](OLED2.jpg)
+![](Hora2.jpg)
 
