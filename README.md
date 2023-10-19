@@ -164,3 +164,5 @@ Corriendo en el OLED
 ![](Hora_1.jpg)
 
 ![](Hora_2.jpg)
+
+![](Hora_3.jpg)
