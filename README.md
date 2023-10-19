@@ -161,6 +161,6 @@ Circuito
 
 Corriendo en el OLED
 
-![](Horas1.jpg)
+![](Hora_1.jpg)
 
-![](Horas2.jpg)
+![](Hora_2.jpg)
