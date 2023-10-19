@@ -90,7 +90,7 @@ Corriendo en el OLED
 ### CÓDIGO
 ```python
 ## Autor: Hernandez Saenz  Sara Jazmín
-## Fecha de revisión:   18/Oct/2023
+## Fecha de revisión:   19/Oct/2023
 
 #librerias y módulos
 import network
@@ -138,8 +138,8 @@ def despliegue_oled(oled, hr):
     oled.show()
 
 #definición de red a la que se hará la conexión
-ssid = "OPPO A53"
-contra = "f082dd9d35a2"
+ssid = "TecNM_ITT"
+contra = ""
 #llamada a la función y envío de parametros
 conexion(ssid, contra) 
 oled = config_pantalla()
