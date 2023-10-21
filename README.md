@@ -51,7 +51,6 @@ Prendido
 
 import machine
 import ssd1306
-
 # Configura los pines SDA y SCL para la comunicación I2C
 i2c = machine.I2C(0, sda=machine.Pin(8), scl=machine.Pin(9))
 
@@ -64,11 +63,10 @@ oled.show()
 
 # Dibuja "Hola Mundo" en la pantalla
 oled.text("Hola Mundo", 0, 0)
-oled.text("Soy Sara", 0, 10)
+oled.text("Hello World", 0, 10)
 
 # Actualiza la pantalla para mostrar el texto
-oled.show()
-##
+oled.show() 
 ```
 
 ### Evidencia de la práctica realizada
