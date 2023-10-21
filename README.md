@@ -77,9 +77,9 @@ Circuito
 
 Corriendo en el OLED
 
-![](OLED1.jpg)
+![](HolaHello.jpg)
 
-![](OLED2.jpg)
+![](HolaHello1.jpg)
 
 
 
