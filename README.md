@@ -131,13 +131,15 @@ def config_pantalla():
 #función para el despliegue de resultados en pantalla
 def despliegue_oled(oled, hr):
     oled.fill(0) #propiedades de despliegue
-    oled.text("Hora (PST):", 0, 0) #mensaje
-    oled.text(hr, 0, 16)
+    oled.text("Hora Local:", 0, 0) #mensaje
+    oled.text(hr, 0, 20)
     oled.show()
 
 #definición de red a la que se hará la conexión
-ssid = "TecNM_ITT"
-contra = ""
+#ssid = "TecNM_ITT"
+#contra = ""
+ssid = "Totalplay-D2A5"
+contra = "D2A52959Yw98P4ex"
 #llamada a la función y envío de parametros
 conexion(ssid, contra) 
 oled = config_pantalla()
@@ -148,7 +150,6 @@ while True:
     print("Hora actual:", hr)
     despliegue_oled(oled, hr)
     utime.sleep(60)
-##
 ```
 
 ### Evidencia de la práctica realizada
@@ -159,8 +160,8 @@ Circuito
 
 Corriendo en el OLED
 
-![](Hora_1.jpg)
+![](HoraTime.jpg)
 
-![](Hora_2.jpg)
+![](HoraTime1.jpg)
 
-![](Hora_3.jpg)
+![](HoraTime2.jpg)
