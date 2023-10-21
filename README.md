@@ -160,8 +160,8 @@ Circuito
 
 Corriendo en el OLED
 
-![](HoraTime.jpg)
+![](HoraTime.jpeg)
 
-![](HoraTime1.jpg)
+![](HoraTime1.jpeg)
 
 ![](HoraTime2.jpg)
